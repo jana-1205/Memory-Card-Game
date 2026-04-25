@@ -1,3 +1,4 @@
+
 /* ===== BASE ===== */
 * {
   margin: 0;
@@ -12,9 +13,12 @@ body {
   color: #4a3b4f;
 }
 
-/* ===== APP ===== */
+/* ===== APP WRAPPER ===== */
 .app {
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* ===== HEADER ===== */
@@ -69,31 +73,23 @@ body {
 
 .controls button:hover {
   transform: translateY(-3px) scale(1.05);
-  box-shadow: 0 10px 22px rgba(255, 105, 180, 0.25);
 }
 
-.controls button:active {
-  transform: scale(0.97);
-}
+/* ===== LAYOUT (STABLE FIX) ===== */
 .layout {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
+  display: grid;
+  grid-template-columns: 260px 1fr;
   gap: 25px;
   padding: 20px;
-  flex-wrap: wrap;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  align-items: start;
+}
 
-  max-width: 1100px;
-  margin: 0 auto; /* 🔥 THIS is the real fix */
-}
-.game-container {
-  display: flex;
-  justify-content: center;
-  flex: 1;
-}
-/* ===== SIDE PANEL (RIGHT) ===== */
+/* ===== SIDE PANEL (LOCKED POSITION) ===== */
 .side-panel {
-  grid-column: 3;
+  grid-column: 1;
   position: sticky;
   top: 20px;
 
@@ -117,23 +113,24 @@ body {
   margin: 10px 0;
   padding: 12px;
   border-radius: 14px;
-
   display: flex;
   justify-content: space-between;
   font-weight: 600;
-  color: #4a3b4f;
-
-  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
 }
 
-.board {
-  width: 720px;        /* 🔥 HARD STOP — no more stretching */
-  max-width: 95vw;     /* mobile safety */
-  margin: 0 auto;
+/* ===== GAME AREA ===== */
+.game-container {
+  grid-column: 2;
+  display: flex;
+  justify-content: center;
+}
 
+/* ===== BOARD (RESPONSIVE SAFE) ===== */
+.board {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 🔥 FIXED columns */
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
   gap: 18px;
+  width: min(720px, 95vw);
   padding: 25px;
 }
 
@@ -166,7 +163,6 @@ body {
   height: 100%;
   border-radius: 16px;
   backface-visibility: hidden;
-
   display: flex;
   justify-content: center;
   align-items: center;
@@ -189,9 +185,9 @@ body {
   background: linear-gradient(135deg, #ffd6e7, #e6e6ff);
   font-size: 1.5rem;
   font-weight: bold;
-  color: #5a3b5f;
 }
 
+/* ===== MATCHED ===== */
 .card.matched {
   opacity: 0.4;
   transform: scale(0.92);
@@ -206,31 +202,21 @@ footer {
   opacity: 0.6;
 }
 
+/* ===== MOBILE FIX ===== */
 @media (max-width: 900px) {
-
   .layout {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center;
-    padding: 10px;
-  }
-
-  .game-container {
-    width: 100%;
-    order: 1;
-  }
-
-  .board {
-    width: 100% !important;
-    max-width: 95vw;
+    grid-template-columns: 1fr;
   }
 
   .side-panel {
-    position: relative !important;
-    top: auto !important;
-    width: 100%;
+    grid-column: 1;
+    position: relative;
+    top: auto;
     max-width: 400px;
-    order: 2;
+    margin: 0 auto;
   }
 
+  .game-container {
+    grid-column: 1;
+  }
 }
