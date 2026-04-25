@@ -206,18 +206,23 @@ footer {
   opacity: 0.6;
 }
 
-/* ===== MOBILE ===== */
 @media (max-width: 900px) {
+  .side-panel {
+    position: relative;
+    top: auto;
+  }
+
   .layout {
     grid-template-columns: 1fr;
   }
 
-  .game-container,
-  .side-panel {
+  .game-container {
     grid-column: 1;
   }
 
   .side-panel {
+    grid-column: 1;
+    width: 100%;
     max-width: 400px;
     margin: 0 auto;
   }
