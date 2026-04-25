@@ -207,23 +207,30 @@ footer {
 }
 
 @media (max-width: 900px) {
-  .side-panel {
-    position: relative;
-    top: auto;
-  }
 
   .layout {
-    grid-template-columns: 1fr;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center;
+    padding: 10px;
   }
 
   .game-container {
-    grid-column: 1;
+    width: 100%;
+    order: 1;
+  }
+
+  .board {
+    width: 100% !important;
+    max-width: 95vw;
   }
 
   .side-panel {
-    grid-column: 1;
+    position: relative !important;
+    top: auto !important;
     width: 100%;
     max-width: 400px;
-    margin: 0 auto;
+    order: 2;
   }
+
 }
