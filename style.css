@@ -1,0 +1,224 @@
+/* ===== BASE ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #ee83ae, #b8cff3);
+  color: #4a3b4f;
+}
+
+/* ===== APP ===== */
+.app {
+  width: 100%;
+}
+
+/* ===== HEADER ===== */
+.top-bar {
+  width: 100%;
+  text-align: center;
+  padding: 22px;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(12px);
+  border-bottom: 2px solid rgba(255, 182, 193, 0.4);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+}
+
+.top-bar h1 {
+  color: #ff6fae;
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+/* ===== STATS ===== */
+.stats {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  font-weight: 500;
+  color: #6b5b6e;
+  margin-bottom: 10px;
+}
+
+/* ===== BUTTONS ===== */
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.controls button {
+  padding: 14px 22px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 0.95rem;
+  background: linear-gradient(135deg, #ffd6e7, #d6e6ff);
+  color: #5a3b5f;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.10);
+  transition: all 0.25s ease;
+  min-width: 120px;
+}
+
+.controls button:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 10px 22px rgba(255, 105, 180, 0.25);
+}
+
+.controls button:active {
+  transform: scale(0.97);
+}
+.layout {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 25px;
+  padding: 20px;
+  flex-wrap: wrap;
+
+  max-width: 1100px;
+  margin: 0 auto; /* 🔥 THIS is the real fix */
+}
+.game-container {
+  display: flex;
+  justify-content: center;
+  flex: 1;
+}
+/* ===== SIDE PANEL (RIGHT) ===== */
+.side-panel {
+  grid-column: 3;
+  position: sticky;
+  top: 20px;
+
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+  padding: 20px;
+
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  border: 1px solid rgba(255, 182, 193, 0.4);
+}
+
+.side-panel h2 {
+  text-align: center;
+  color: #ff6fae;
+  margin-bottom: 15px;
+}
+
+.info-box {
+  background: linear-gradient(135deg, #ffe6f0, #e6f0ff);
+  margin: 10px 0;
+  padding: 12px;
+  border-radius: 14px;
+
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+  color: #4a3b4f;
+
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.board {
+  width: 720px;        /* 🔥 HARD STOP — no more stretching */
+  max-width: 95vw;     /* mobile safety */
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 🔥 FIXED columns */
+  gap: 18px;
+  padding: 25px;
+}
+
+/* ===== CARDS ===== */
+.card {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  perspective: 1000px;
+  cursor: pointer;
+}
+
+.card-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+  transition: transform 0.55s cubic-bezier(.2,.8,.2,1);
+  transform-style: preserve-3d;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+  position: relative;
+}
+
+.card.flipped .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+  backface-visibility: hidden;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-front {
+  transform: rotateY(180deg);
+  background: white;
+  overflow: hidden;
+  border: 2px solid rgba(255, 182, 193, 0.4);
+}
+
+.card-front img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card-back {
+  background: linear-gradient(135deg, #ffd6e7, #e6e6ff);
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #5a3b5f;
+}
+
+.card.matched {
+  opacity: 0.4;
+  transform: scale(0.92);
+}
+
+/* ===== FOOTER ===== */
+footer {
+  width: 100%;
+  text-align: center;
+  padding: 20px;
+  margin-top: 30px;
+  opacity: 0.6;
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .game-container,
+  .side-panel {
+    grid-column: 1;
+  }
+
+  .side-panel {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+}

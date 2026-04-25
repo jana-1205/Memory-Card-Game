@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Memory Match Game 💕</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <div class="app">
+
+    <header class="top-bar">
+      <h1>💕 Memory Match 💕</h1>
+
+      <div class="stats">
+        <div>Moves: <span id="moves">0</span></div>
+        <div>Time: <span id="timer">0</span>s</div>
+        <div>Score: <span id="score">0</span></div>
+      </div>
+
+      <div class="controls">
+        <button onclick="setDifficulty('easy')">Easy</button>
+        <button onclick="setDifficulty('medium')">Medium</button>
+        <button onclick="setDifficulty('hard')">Hard</button>
+        <button onclick="restartGame()">Restart</button>
+        <button onclick="newGame()">New Game</button>
+        <button onclick="togglePause()">Pause</button>
+        <button onclick="continueGame()">Continue</button>
+      </div>
+    </header>
+
+    <div class="layout">
+
+      <div class="side-panel">
+        <h2>📊 Game Info</h2>
+
+        <div class="info-box">
+          <p>Level</p>
+          <span id="level">1</span>
+        </div>
+
+        <div class="info-box">
+          <p>Best Score</p>
+          <span id="bestScore">0</span>
+        </div>
+
+        <div class="info-box">
+          <p>Timer Goal</p>
+          <span id="goal">60s</span>
+        </div>
+      </div>
+
+      <main class="game-container">
+        <div id="gameBoard" class="board"></div>
+      </main>
+
+    </div>
+
+    <footer>
+      <p>Made with 💖 and mild frustration</p>
+    </footer>
+
+  </div>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
